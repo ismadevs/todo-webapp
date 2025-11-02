@@ -1,0 +1,739 @@
+/* ============================================
+   GLOBAL RESET & BASE STYLES
+   ============================================ */
+
+/* Reset default browser styles for consistent rendering across browsers */
+* {
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+  margin: 0;
+  padding: 0;
+}
+
+/* Base body styles */
+body {
+    background-color: white;
+    line-height: 1.6; /* Improve readability with comfortable line spacing */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 700; /* Bold text by default for modern look */
+}
+
+/* ============================================
+   MAIN LAYOUT
+   ============================================ */
+
+/* Main container holding sidebar and content */
+.app-container {
+    margin: 0.625rem; /* 10px - margin around entire app */
+    display: flex; /* Side-by-side layout */
+    height: calc(100vh - 1.25rem); /* Full viewport height minus top and bottom margins */
+    gap: 1.25rem; /* 20px - space between sidebar and content */
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+/* Sidebar container - left side navigation */
+.sidebar-container {
+    background-color: white;
+    flex: 0 0 30%; /* Fixed at 30% width, no grow/shrink */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: flex-end; /* Push content to the right side */
+    padding-right: 6.25rem; /* 100px - space from content container */
+    border-right: solid 0.0625rem #e0e0e0; /* 1px - subtle divider line */
+}
+
+/* Navigation links list */
+.nav-links {
+    list-style: none; /* Remove bullet points */
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    gap: 1.25rem; /* 20px - space between each link */
+}
+
+/* Individual nav link item */
+.nav-links li {
+    text-align: left;
+}
+
+/* Nav link styling */
+.nav-links li a {
+    display: flex; /* Allows icon and text to sit side-by-side */
+    align-items: center; /* Vertically center icon and text */
+    gap: 0.75rem; /* 12px - space between icon and text */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.25rem; /* 20px - readable link text */
+    color: black;
+    transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+/* Hover state for nav links */
+.nav-links li a:hover {
+    color: rgb(9, 190, 9); /* Brand green color */
+}
+
+/* Active/selected nav link */
+.nav-links li a.active {
+    color: rgb(9, 190, 9); /* Brand green color */
+}
+
+/* SVG icons in nav links */
+.nav-links li a svg {
+    transition: color 0.3s ease; /* Smooth color transition */
+    margin-right: 0.625rem; /* 10px - extra spacing after icon */
+}
+
+/* Language toggle button */
+.language-btn {
+    position: absolute;
+    left: 1.875rem; /* 30px - from left edge of sidebar */
+    bottom: 1.875rem; /* 30px - from bottom of sidebar */
+    padding: 0.625rem 1.25rem; /* 10px 20px - comfortable click area */
+    background-color: white;
+    border: 0.125rem solid #e0e0e0; /* 2px border */
+    border-radius: 1.5rem; /* 24px - fully rounded corners */
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem; /* 16px */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 8px - space between flag and text */
+    letter-spacing: 0.0625rem; /* 1px - slight spacing between letters */
+}
+
+/* Language button hover state */
+.language-btn:hover {
+    border-color: rgb(9, 190, 9); /* Green border on hover */
+    background-color: rgba(9, 190, 9, 0.1); /* Subtle green background tint */
+}
+
+/* ============================================
+   CONTENT AREA
+   ============================================ */
+
+/* Main content container - right side */
+.content-container {
+    background-color: white;
+    flex: 1; /* Take up all remaining space */
+    display: flex;
+    flex-direction: column; /* Stack header and body vertically */
+    overflow: hidden; /* Prevent overflow from container */
+}
+
+/* Content header - shows section title and description */
+.content-header {
+    padding: 1.25rem; /* 20px - internal spacing */
+    background-color: white;
+    flex: 0 0 25%; /* Fixed at 25% of content height */
+    overflow-y: auto; /* Allow scrolling if content is too large */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* For absolute positioning of children */
+    justify-content: flex-end; /* Push content to bottom */
+    gap: 0.5rem; /* 8px - space between title and description */
+    border-bottom: solid #e0e0e0 0.0625rem; /* 1px - divider line */
+}
+
+/* Content body - scrollable area with todos/form/categories */
+.content-body {
+    flex: 0 0 75%; /* Fixed at 75% of content height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 1.25rem; /* 20px - internal spacing */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+}
+
+/* Website title in top left of content header */
+.website-title {
+    color: rgb(9, 190, 9); /* Brand green color */
+    font-size: 1.4em; /* Relative to parent font size */
+    position: absolute;
+    top: 1.25rem; /* 20px - from top */
+    left: 2.5rem; /* 40px - from left */
+}
+
+/* Section title (Home, Create, Categories) */
+#section-title {
+    margin: 0;
+    font-size: 2.375rem; /* 38px - large, prominent title */
+    font-weight: 800; /* Extra bold for emphasis */
+    color: #333;
+    line-height: 1.2; /* Tight line spacing for multi-line titles */
+    padding-left: 2.5rem; /* 40px - align with website title */
+}
+
+/* Section description text */
+#section-description {
+    margin: 0;
+    font-size: 1.25rem; /* 20px - readable description */
+    color: #666; /* Lighter gray for secondary text */
+    font-weight: 400; /* Normal weight for contrast with title */
+    line-height: 1.4; /* Comfortable reading line height */
+    padding-left: 2.5rem; /* 40px - align with title */
+    padding-bottom: 2.5rem; /* 40px - space from bottom border */
+}
+
+/* ============================================
+   VIEWS & CONTENT SECTIONS
+   ============================================ */
+
+/* View container (home, create, categories) */
+.view {
+    display: none; /* Hidden by default */
+    width: 100%;
+    max-width: 50rem; /* 800px - limit width for readability */
+    padding-bottom: 6.25rem; /* 100px - space from bottom */
+    padding-top: 2.5rem; /* 2.5 rem - space from top */
+}
+
+/* Active/visible view */
+.view.active {
+    display: block;
+}
+
+/* ============================================
+   TODO FEED & CARDS
+   ============================================ */
+
+/* Container for todo cards */
+.todos-feed {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    gap: 1rem; /* 16px - space between cards */
+    padding-bottom: 50px; /* 50px - space from the bottom */
+}
+
+/* Individual todo card */
+.todo-card {
+    background-color: white;
+    border: 0.125rem solid #e0e0e0; /* 2px border */
+    border-radius: 1.25rem; /* 20px - rounded corners */
+    padding: 1.25rem; /* 20px - internal spacing */
+    display: grid; /* Use grid for complex layout */
+    grid-template-columns: 1fr auto; /* Left column flexible, right column auto-sized */
+    grid-template-rows: auto 1fr auto; /* Top and bottom rows auto-sized, middle flexible */
+    gap: 0.75rem; /* 12px - space between grid items */
+}
+
+/* Todo card hover effect */
+.todo-card:hover {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+/* Completed todo card styling */
+.todo-card.completed {
+    opacity: 0.7; /* Slightly faded to show completed state */
+    border-color: rgb(9, 190, 9); /* Green border for completed */
+}
+
+/* Todo title */
+.todo-title {
+    grid-column: 1; /* Left column */
+    grid-row: 1; /* Top row */
+    font-size: 1.25rem; /* 20px */
+    font-weight: 800;
+    color: #333;
+    margin: 0;
+}
+
+/* Category badge in top right */
+.todo-category {
+    grid-column: 2; /* Right column */
+    grid-row: 1; /* Top row */
+    font-size: 1rem; /* 16px */
+    padding: 0.25rem 0.75rem; /* 4px 12px - compact padding */
+    background-color: #f5f5f5; /* Light gray background */
+    border-radius: 1.25rem; /* 20px - pill shape */
+    white-space: nowrap; /* Prevent text wrapping */
+    align-self: start; /* Align to top of cell */
+    justify-self: end; /* Align to right of cell */
+    margin-top: -0.125rem; /* -2px - slight upward adjustment */
+    margin-right: -0.125rem; /* -2px - slight rightward adjustment */
+}
+
+/* Todo description text */
+.todo-description {
+    grid-column: 1 / -1; /* Span both columns */
+    grid-row: 2; /* Middle row */
+    color: #666; /* Secondary text color */
+    line-height: 1.6; /* Comfortable reading line height */
+    margin: 0;
+}
+
+/* Completed status text */
+.todo-status {
+    grid-column: 1; /* Left column */
+    grid-row: 3; /* Bottom row */
+    color: rgb(9, 190, 9); /* Brand green */
+    font-weight: 700;
+    align-self: end; /* Align to bottom of cell */
+}
+
+/* Container for action buttons */
+.todo-actions {
+    grid-column: 2; /* Right column */
+    grid-row: 3; /* Bottom row */
+    display: flex;
+    gap: 0.5rem; /* 8px - space between buttons */
+    align-self: end; /* Align to bottom of cell */
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+/* Base button styling */
+.btn {
+    padding: 0.5rem 1rem; /* 8px 16px - comfortable padding */
+    border: none;
+    border-radius: 0.5rem; /* 8px - rounded corners */
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+/* Complete/Not Complete button */
+.btn-complete {
+    background-color: white;
+    color: black;
+    border: 0.125rem solid #e0e0e0; /* 2px border */
+}
+
+/* Complete button hover state */
+.btn-complete:hover {
+    background-color: white;
+    color: rgb(9, 190, 9); /* Green text on hover */
+    border: 0.125rem solid rgb(9, 190, 9); /* Green border on hover */
+}
+
+/* Delete button */
+.btn-delete {
+    background-color: white;
+    color: black;
+    border: 0.125rem solid #e0e0e0; /* 2px border */
+}
+
+/* Delete button hover state */
+.btn-delete:hover {
+    background-color: white;
+    color: #e8183b; /* Red text on hover */
+    border: 0.125rem solid #e8183b; /* Red border on hover */
+}
+
+/* Primary action button (Create Todo, Back to All) */
+.btn-primary {
+    padding: 0.75rem 1.5rem; /* 12px 24px - larger padding for emphasis */
+    background-color: rgb(9, 190, 9); /* Brand green background */
+    color: white;
+    border: none;
+    border-radius: 0.5rem; /* 8px */
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1rem; /* 16px */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start; /* Don't stretch full width */
+}
+
+/* Primary button hover state */
+.btn-primary:hover {
+    background-color: white; /* Invert colors on hover */
+    border: solid rgb(9, 190, 9) 0.125rem; /* 2px green border */
+    color: rgb(9, 190, 9); /* Green text */
+}
+
+/* ============================================
+   TODO CREATION FORM
+   ============================================ */
+
+/* Form container */
+.todo-form {
+    max-width: 37.5rem; /* 600px - limit width for better UX */
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    gap: 1.25rem; /* 20px - space between form groups */
+}
+
+/* Form group (label + input) */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+    gap: 0.5rem; /* 8px - space between label and input */
+}
+
+/* Form labels */
+.form-group label {
+    font-weight: 700;
+    color: #333;
+}
+
+/* Form inputs (text, textarea, select) */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 0.75rem; /* 12px - comfortable input padding */
+    border: 0.125rem solid #e0e0e0; /* 2px border */
+    border-radius: 0.5rem; /* 8px - rounded corners */
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1rem; /* 16px - prevents zoom on mobile iOS */
+    transition: border-color 0.3s ease; /* Smooth border color change */
+}
+
+/* Input focus state */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none; /* Remove default browser outline */
+    border-color: rgb(9, 190, 9); /* Green border when focused */
+}
+
+/* ============================================
+   CATEGORIES GRID
+   ============================================ */
+
+/* Grid container for category cards */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr)); /* 250px - responsive columns */
+    gap: 1.25rem; /* 20px - space between cards */
+}
+
+/* Individual category card */
+.category-card {
+    background-color: white;
+    border: 0.125rem solid #e0e0e0; /* 2px border */
+    border-radius: 0.75rem; /* 12px - rounded corners */
+    padding: 1.5rem; /* 24px - comfortable padding */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    cursor: pointer;
+}
+
+/* Category card hover effect */
+.category-card:hover {
+    transform: translateY(-0.25rem); /* -4px - lift up slightly */
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Category emoji */
+.category-emoji {
+    font-size: 3rem; /* 48px - large emoji */
+    margin-bottom: 0.75rem; /* 12px - space below emoji */
+}
+
+/* Category name */
+.category-name {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 800;
+    margin-bottom: 0.5rem; /* 8px - space below name */
+    text-transform: capitalize; /* Capitalize first letter */
+}
+
+/* Category todo count */
+.category-count {
+    color: #666; /* Secondary text color */
+    font-size: 0.875rem; /* 14px - smaller count text */
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 64em) { /* 1024px */
+    .app-container {
+        gap: 0.9375rem; /* 15px */
+    }
+
+    .sidebar-container {
+        flex: 0 0 35%; /* Slightly wider sidebar on tablet */
+        padding-right: 3.125rem; /* 50px */
+    }
+
+    .website-title {
+        font-size: 1.2em;
+        left: 1.25rem; /* 20px */
+    }
+
+    #section-title {
+        font-size: 2rem; /* 32px */
+        padding-left: 1.25rem; /* 20px */
+    }
+
+    #section-description {
+        font-size: 1.125rem; /* 18px */
+        padding-left: 1.25rem; /* 20px */
+        padding-bottom: 1.875rem; /* 30px */
+    }
+
+    .nav-links li a {
+        font-size: 1.125rem; /* 18px */
+    }
+
+    .language-btn {
+        left: 1.25rem; /* 20px */
+        bottom: 1.25rem; /* 20px */
+        font-size: 0.875rem; /* 14px */
+        padding: 0.5rem 1rem; /* 8px 16px */
+    }
+
+    .view {
+        max-width: 37.5rem; /* 600px */
+        padding-top: 1.875rem; /* 30px */
+    }
+
+    .todo-card {
+        padding: 1rem; /* 16px */
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); /* 200px */
+        gap: 0.9375rem; /* 15px */
+    }
+}
+
+/* Mobile landscape and small tablets (600px - 768px) */
+@media screen and (max-width: 48em) { /* 768px */
+    .app-container {
+        flex-direction: column; /* Stack sidebar above content */
+        margin: 0;
+        height: 100vh;
+        gap: 0;
+    }
+
+    .sidebar-container {
+        flex: 0 0 auto; /* Let sidebar size naturally */
+        width: 100%;
+        padding: 1.25rem; /* 20px */
+        border-right: none; /* Remove right border */
+        border-bottom: solid 0.0625rem #e0e0e0; /* 1px - add bottom border */
+        justify-content: center;
+        position: relative;
+    }
+
+    .sidebar {
+        width: 100%;
+        display: flex;
+        flex-direction: row; /* Horizontal nav on mobile */
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .nav-links {
+        flex-direction: row; /* Horizontal navigation */
+        gap: 1.875rem; /* 30px */
+    }
+
+    .nav-links li a {
+        flex-direction: column; /* Stack icon above text */
+        gap: 0.3125rem; /* 5px */
+        font-size: 0.75rem; /* 12px */
+    }
+
+    .nav-links li a svg {
+        margin-right: 0;
+        width: 1.25rem; /* 20px */
+        height: 1.25rem; /* 20px */
+    }
+
+    .website-title {
+        position: static; /* Remove absolute positioning */
+        font-size: 1em;
+        margin-bottom: 0.9375rem; /* 15px */
+        text-align: center;
+    }
+
+    .language-btn {
+        position: absolute;
+        right: 1.25rem; /* 20px - move to top right */
+        top: 1.25rem; /* 20px */
+        left: auto;
+        bottom: auto;
+        font-size: 0.75rem; /* 12px */
+        padding: 0.375rem 0.75rem; /* 6px 12px */
+    }
+
+    .content-container {
+        flex: 1;
+    }
+
+    .content-header {
+        flex: 0 0 auto;
+        padding: 0.9375rem; /* 15px */
+    }
+
+    #section-title {
+        font-size: 1.5rem; /* 24px */
+        padding-left: 0;
+    }
+
+    #section-description {
+        font-size: 1rem; /* 16px */
+        padding-left: 0;
+        padding-bottom: 0.9375rem; /* 15px */
+    }
+
+    .content-body {
+        flex: 1;
+        padding: 0.9375rem; /* 15px */
+    }
+
+    .view {
+        max-width: 100%;
+        padding-top: 1.25rem; /* 20px */
+        padding-bottom: 3.125rem; /* 50px */
+    }
+
+    .todo-card {
+        padding: 0.9375rem; /* 15px */
+        border-radius: 0.75rem; /* 12px */
+    }
+
+    .todo-title {
+        font-size: 1.125rem; /* 18px */
+    }
+
+    .todo-description {
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .todo-category {
+        font-size: 0.875rem; /* 14px */
+        padding: 0.25rem 0.625rem; /* 4px 10px */
+    }
+
+    .todo-actions {
+        flex-direction: column; /* Stack buttons vertically on mobile */
+        gap: 0.5rem; /* 8px */
+    }
+
+    .btn {
+        width: 100%; /* Full width buttons on mobile */
+        text-align: center;
+    }
+
+    .todo-form {
+        max-width: 100%;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr)); /* 150px */
+        gap: 0.75rem; /* 12px */
+    }
+
+    .category-card {
+        padding: 1.25rem; /* 20px */
+    }
+
+    .category-emoji {
+        font-size: 2.25rem; /* 36px */
+    }
+
+    .category-name {
+        font-size: 1rem; /* 16px */
+    }
+}
+
+/* Mobile portrait (below 600px) */
+@media screen and (max-width: 37.5em) { /* 600px */
+    .nav-links {
+        gap: 1.25rem; /* 20px */
+    }
+
+    .nav-links li a {
+        font-size: 0.6875rem; /* 11px */
+    }
+
+    .nav-links li a svg {
+        width: 1.125rem; /* 18px */
+        height: 1.125rem; /* 18px */
+    }
+
+    #section-title {
+        font-size: 1.25rem; /* 20px */
+    }
+
+    #section-description {
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .todo-card {
+        padding: 0.75rem; /* 12px */
+    }
+
+    .todo-title {
+        font-size: 1rem; /* 16px */
+    }
+
+    .todo-description {
+        font-size: 0.8125rem; /* 13px */
+    }
+
+    .todo-category {
+        font-size: 0.75rem; /* 12px */
+        padding: 0.1875rem 0.5rem; /* 3px 8px */
+    }
+
+    .btn {
+        font-size: 0.875rem; /* 14px */
+        padding: 0.5rem 0.75rem; /* 8px 12px */
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr; /* Single column on small mobile */
+    }
+
+    .category-card {
+        padding: 1rem; /* 16px */
+    }
+
+    .category-emoji {
+        font-size: 2rem; /* 32px */
+    }
+
+    .website-title {
+        font-size: 1em;
+    }
+}
+
+/* Very small mobile (below 400px) */
+@media screen and (max-width: 25em) { /* 400px */
+    .nav-links {
+        gap: 0.9375rem; /* 15px */
+    }
+
+    .nav-links li a {
+        font-size: 0.625rem; /* 10px */
+    }
+
+    .language-btn {
+        font-size: 0.625rem; /* 10px */
+        padding: 0.3125rem 0.625rem; /* 5px 10px */
+        right: 0.625rem; /* 10px */
+        top: 0.625rem; /* 10px */
+    }
+
+    #section-title {
+        font-size: 1.125rem; /* 18px */
+    }
+
+    #section-description {
+        font-size: 0.8125rem; /* 13px */
+    }
+
+    .todo-actions {
+        gap: 0.375rem; /* 6px */
+    }
+
+    .btn {
+        font-size: 0.8125rem; /* 13px */
+        padding: 0.375rem 0.625rem; /* 6px 10px */
+    }
+}
